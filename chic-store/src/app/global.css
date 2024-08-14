@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+input:focus {
+  outline: none;
+}
+
+body {
+  background-color: #f3f4f6; /* Set your desired background color */
+}
