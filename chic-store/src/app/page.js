@@ -4,6 +4,41 @@ import Image from "next/image";
 import axios from "axios";
 import ClothingItemCard from "@/components/ClothingItemCard";
 import Link from 'next/link';
+import Script from "next/script";
+
+
+
+export async function generateMetadata() {
+  // You might want to fetch some data here to generate dynamic metadata
+  return {
+    title: 'Chic - Noutăți și Discount-uri la Articole de Damă',
+    description: 'Descoperă cele mai recente articole de damă și profită de discount-urile momentului la Chic. Colecție nouă și prețuri speciale.',
+    openGraph: {
+      title: 'Chic - Noutăți și Discount-uri la Articole de Damă',
+      description: 'Descoperă cele mai recente articole de damă și profită de discount-urile momentului la Chic. Colecție nouă și prețuri speciale.',
+    },
+  };
+}
+
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "ClothingStore",
+  "name": "Chic",
+  "description": "Magazin cu articole de damă",
+  "url": "https://www.chic-magazin.ro",
+  "telephone": "0712345678",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Strada",
+    "addressLocality": "Oras",
+    "addressRegion": "Judet",
+    "postalCode": "000000",
+    "addressCountry": "RO"
+  },
+  "openingHours": "Mo-Sa 10:00-20:00"
+};
+
 
 const Home = () => {
   const [discountedItems, setDiscountedItems] = useState([]);
@@ -42,52 +77,59 @@ const Home = () => {
   }, []);
 
   return (
-    <div className='flex flex-col items-center justify-even mb-12 overflow-x-hidden'>
-      <div className="flex flex-col items-center w-full max-w-screen-xl px-4 mb-12">
-        <Image
-          src='/images/logo.svg'
-          alt='Logo image'
-          className="mt-16"
-          width={150}
-          height={50}
-        />
-        {/* Use a fancy font here */}
-        <p className="text-3xl font-bold mt-4">Magazin cu articole de damă</p>
-      </div>
+    <>
+      <Script
+        id="structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <div className='flex flex-col items-center justify-even mb-12 overflow-x-hidden'>
+        <div className="flex flex-col items-center w-full max-w-screen-xl px-4 mb-12">
+          <Image
+            src='/images/logo.svg'
+            alt='Logo image'
+            className="mt-16"
+            width={150}
+            height={50}
+          />
+          {/* Use a fancy font here */}
+          <p className="text-3xl font-bold mt-4">Magazin cu articole de damă</p>
+        </div>
 
-      <div className="flex flex-col items-center w-full max-w-6xl px-4 mt-8 mb-12 mx-auto">
-        <p className="flex justify-start text-2xl font-semibold mb-4">Discount-urile momentului</p>
-        <div className="flex flex-row flex-wrap gap-6 justify-center">
-          {discountedItems.map((item) => (
-            <Link href={`products/${item.id}`} key={item.id}>
-              <ClothingItemCard key={item.id} item={item} />
-            </Link>
-          ))}
+        <div className="flex flex-col items-center w-full max-w-6xl px-4 mt-8 mb-12 mx-auto">
+          <p className="flex justify-start text-2xl font-semibold mb-4">Discount-urile momentului</p>
+          <div className="flex flex-row flex-wrap gap-6 justify-center">
+            {discountedItems.map((item) => (
+              <Link href={`products/${item.id}`} key={item.id}>
+                <ClothingItemCard key={item.id} item={item} />
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        <div className="flex flex-col items-center w-full max-w-6xl px-4 mt-12 mx-auto">
+          <p className="text-left text-2xl font-semibold mb-4">Noutăți</p>
+          <div className="flex flex-row flex-wrap gap-6 justify-center">
+            {newItems.map((item) => (
+              <Link href={`products/${item.id}`} key={item.id}>
+                <ClothingItemCard key={item.id} item={item} />
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        <div className="flex flex-row self-center justify-between group hover:cursor-pointer px-4 my-24">
+          <Link href={'products'}>
+            <p className="text-left text-xl group-hover:text-3xl text-2xl font-bold text-indigo-700 group-hover:text-indigo-800 transition-all duration-300 relative">
+              <span className="relative inline-block">
+                Descoperă întreaga colecție &gt;
+                <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-indigo-800 group-hover:w-full transition-all duration-400"></span>
+              </span>
+            </p>
+          </Link>
         </div>
       </div>
-
-      <div className="flex flex-col items-center w-full max-w-6xl px-4 mt-12 mx-auto">
-        <p className="text-left text-2xl font-semibold mb-4">Noutăți</p>
-        <div className="flex flex-row flex-wrap gap-6 justify-center">
-          {newItems.map((item) => (
-            <Link href={`products/${item.id}`} key={item.id}>
-              <ClothingItemCard key={item.id} item={item} />
-            </Link>
-          ))}
-        </div>
-      </div>
-
-      <div className="flex flex-row self-center justify-between group hover:cursor-pointer px-4 my-24">
-        <Link href={'products'}>
-          <p className="text-left text-xl group-hover:text-3xl text-2xl font-bold text-indigo-700 group-hover:text-indigo-800 transition-all duration-300 relative">
-            <span className="relative inline-block">
-              Descoperă întreaga colecție &gt;
-              <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-indigo-800 group-hover:w-full transition-all duration-400"></span>
-            </span>
-          </p>
-        </Link>
-      </div>
-    </div>
+    </>
   );
 }
 
