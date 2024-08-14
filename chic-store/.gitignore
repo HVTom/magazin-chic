@@ -36,8 +36,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# database
-chic_store.db
-
 # constants
 /constants
