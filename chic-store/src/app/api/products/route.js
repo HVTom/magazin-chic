@@ -27,22 +27,33 @@ const getProductImage = async (productId) => {
 };
 
 
-// GET all items
 export async function GET(req, res) {
   try {
+    const { searchParams } = new URL(req.url);
+    const limit = parseInt(searchParams.get('limit')) || 10;
+
     const db = await openDatabase();
+
+    // Get total count of items
+    const totalCount = await new Promise((resolve, reject) => {
+      db.get('SELECT COUNT(*) as count FROM items', (err, row) => {
+        if (err) reject(err);
+        else resolve(row.count);
+      });
+    });
 
     const items = await new Promise((resolve, reject) => {
       db.all(`
         SELECT 
-          items.*, 
+          items.*,
           group_concat(DISTINCT item_sizes.size) as sizes,
           group_concat(DISTINCT item_colors.color) as colors
         FROM items
         LEFT JOIN item_sizes ON items.id = item_sizes.item_id
         LEFT JOIN item_colors ON items.id = item_colors.item_id
         GROUP BY items.id
-      `, async (err, rows) => {
+        LIMIT ?
+      `, [limit], async (err, rows) => {
         if (err) {
           reject(err)
         } else {
@@ -59,9 +70,7 @@ export async function GET(req, res) {
       });
     });
 
-
-    console.log("GET ALL ITEMS: ", items);
-
+    console.log("GET ITEMS: ", items);
 
     db.close((err) => {
       if (err) {
@@ -69,7 +78,11 @@ export async function GET(req, res) {
       }
     })
 
-    return NextResponse.json(items, { status: 200 });
+    return NextResponse.json({
+      items,
+      totalCount,
+      totalFetched: items.length
+    }, { status: 200 });
   } catch (error) {
     console.error("Error retrieving items from database:", error);
     return NextResponse.json({ message: 'Error retrieving items', error: error.message }, { status: 500 });

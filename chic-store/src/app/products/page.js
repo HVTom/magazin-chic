@@ -20,7 +20,10 @@ export default function Products() {
   const [selectedMaterials, setSelectedMaterials] = useState([]);
   const [availableColors, setAvailableColors] = useState(new Set());
   const [availableMaterials, setAvailableMaterials] = useState(new Set());
-
+  //
+  const [limit, setLimit] = useState(5);
+  const [totalItems, setTotalItems] = useState(0);
+  const [totalCount, setTotalCount] = useState(0);
 
 
   const categories = ['Accesorii', 'Bluza', 'Camasa', 'Fusta', 'Incaltaminte', 'Palton', 'Pantaloni', 'Poseta', 'Pulover', 'Rochie'];
@@ -31,39 +34,46 @@ export default function Products() {
 
   // Use the useEffect hook to fetch data from the API endpoint when the component mounts
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("/api/products");
-        setClothingItems(response.data);
+    fetchData();
+  }, [limit]);
 
-        const sizesSet = new Set();
-        const colorsSet = new Set();
-        const materialsSet = new Set();
-        response.data.forEach((item) => {
-          item.sizes.forEach((size) => {
-            if (size !== "null") {
-              sizesSet.add(size)
-            }
-          });
-          if (item.colors) {
-            item.colors.forEach(color => colorsSet.add(color));
-          }
-          if (item.material) {
-            item.material.split(',').forEach(material =>
-              materialsSet.add(material.trim())
-            );
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(`/api/products?limit=${limit}`);
+      const newItems = response.data.items;
+      setClothingItems(newItems);
+      setTotalItems(response.data.totalFetched);
+      setTotalCount(response.data.totalCount);
+
+      const sizesSet = new Set();
+      const colorsSet = new Set();
+      const materialsSet = new Set();
+      newItems.forEach((item) => {
+        item.sizes.forEach((size) => {
+          if (size !== "null") {
+            sizesSet.add(size)
           }
         });
-        setAvailableSizes(sizesSet);
-        setAvailableColors(colorsSet);
-        setAvailableMaterials(materialsSet);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
+        if (item.colors) {
+          item.colors.forEach(color => colorsSet.add(color));
+        }
+        if (item.material) {
+          item.material.split(',').forEach(material =>
+            materialsSet.add(material.trim())
+          );
+        }
+      });
+      setAvailableSizes(sizesSet);
+      setAvailableColors(colorsSet);
+      setAvailableMaterials(materialsSet);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
-    fetchData();
-  }, []);
+  const loadMore = () => {
+    setLimit(prevLimit => prevLimit + 10);
+  };
 
 
 
@@ -151,6 +161,8 @@ export default function Products() {
     setSelectedMaterials([]);
     setSearchTerm('');
     setSearchError('');
+    setLimit(5);
+    fetchData();
   };
 
 
@@ -324,13 +336,23 @@ export default function Products() {
         {/* Grid of card items */}
         <div className="w-full md:w-4/6 md:px-0 md:mt-0 md:mx-10 lg:ml-12 lg:mr-0 md:ml-12 md:mr-0 flex flex-col items-start">
           {filteredItems.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-4 gap-4">
-              {filteredItems.map((item) => (
-                <Link href={`products/${item.id}`} key={item.id}>
-                  <ClothingItemCard key={item.id} item={item} />
-                </Link>
-              ))}
-            </div>
+            <>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-4 gap-4">
+                {filteredItems.map((item) => (
+                  <Link href={`products/${item.id}`} key={item.id}>
+                    <ClothingItemCard key={item.id} item={item} />
+                  </Link>
+                ))}
+              </div>
+              {totalItems < totalCount && (
+                <button
+                  onClick={loadMore}
+                  className="mt-4 bg-black text-white hover:bg-yellow-400 hover:text-black font-bold py-2 px-4 rounded  transition duration-300"
+                >
+                  Arată mai multe
+                </button>
+              )}
+            </>
           ) : (
             <p className="text-center font-bold text-xl">{searchError}</p>
           )}
