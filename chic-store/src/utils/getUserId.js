@@ -12,6 +12,7 @@ export async function getUserId() {
   const token = cookieStore.get(COOKIE_NAME);
 
   if (!token) {
+    console.log("No token found");
     throw new Error("Token not found");
   }
 

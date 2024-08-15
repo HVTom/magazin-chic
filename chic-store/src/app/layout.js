@@ -4,7 +4,9 @@ import Image from 'next/image';
 import localFont from 'next/font/local'
 import { Poppins } from 'next/font/google'
 import { CartProvider } from "@/context/CartCountContext";
+import { useCart } from '@/context/CartCountContext';
 import CartBadge from "@/components/CartBadge";
+import ClientLayout from '@/context/ClientLayout';
 
 // Font files can be colocated inside of `app`
 const poppins = localFont({
@@ -30,6 +32,8 @@ const poppins = localFont({
   ]
 })
 
+
+
 export const metadata = {
   title: 'Chic - Magazin cu articole de damă',
   description: 'Descoperă colecția noastră de articole de damă la Chic. Oferim o gamă variată de haine, accesorii și noutăți la prețuri accesibile.',
@@ -47,8 +51,8 @@ const RootLayout = ({ children }) => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <CartProvider>
-      <html lang="en" className={poppins.className}>
+    <ClientLayout>
+      <html lang="ro" className={poppins.className}>
         <body className="flex flex-col min-h-screen bg-gray-200">
           <header className="bg-beige-500 w-full box-border">
             <div className="max-w-7xl mx-auto px-8 py-4 flex justify-between items-center">
@@ -184,7 +188,7 @@ const RootLayout = ({ children }) => {
           </footer>
         </body>
       </html>
-    </CartProvider>
+    </ClientLayout>
   );
 }
 

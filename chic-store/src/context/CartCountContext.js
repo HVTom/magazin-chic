@@ -1,6 +1,6 @@
 'use client'
 import React, { createContext, useContext, useReducer, useEffect } from 'react';
-import axios from 'axios'; // Make sure to import axios
+import axios from 'axios';
 
 const CartContext = createContext();
 
@@ -21,12 +21,39 @@ export const CartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(cartReducer, { cartCount: 0 });
 
   useEffect(() => {
+    console.log('Cart count changed:', state.cartCount);
+  }, [state.cartCount]);
+
+  useEffect(() => {
+    const storedCount = localStorage.getItem('cartCount');
+    if (storedCount) {
+      dispatch({ type: 'SET_CART_COUNT', payload: parseInt(storedCount, 10) });
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('cartCount', state.cartCount.toString());
+  }, [state.cartCount]);
+
+  useEffect(() => {
     const fetchCartCount = async () => {
+      // Check if user is authenticated
+      const token = localStorage.getItem('token'); // Adjust this based on how you store the token
+      if (!token) {
+        console.log('User not authenticated. Cart count set to 0.');
+        dispatch({ type: 'SET_CART_COUNT', payload: 0 });
+        return;
+      }
+
       try {
-        const response = await axios.get('../api/shopping_cart/cart-count');
+        const response = await axios.get('/api/shopping_cart/cart-count', {
+          headers: { Authorization: `Bearer ${token}` }
+        });
         dispatch({ type: 'SET_CART_COUNT', payload: response.data.count });
       } catch (error) {
         console.error('Error fetching cart count:', error);
+        // Handle error - maybe set cart count to 0 or show a user-friendly message
+        dispatch({ type: 'SET_CART_COUNT', payload: 0 });
       }
     };
 

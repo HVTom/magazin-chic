@@ -8,32 +8,19 @@ import Script from "next/script";
 
 
 
-export async function generateMetadata() {
-  // You might want to fetch some data here to generate dynamic metadata
-  return {
-    title: 'Chic - Noutăți și Discount-uri la Articole de Damă',
-    description: 'Descoperă cele mai recente articole de damă și profită de discount-urile momentului la Chic. Colecție nouă și prețuri speciale.',
-    openGraph: {
-      title: 'Chic - Noutăți și Discount-uri la Articole de Damă',
-      description: 'Descoperă cele mai recente articole de damă și profită de discount-urile momentului la Chic. Colecție nouă și prețuri speciale.',
-    },
-  };
-}
-
-
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "ClothingStore",
   "name": "Chic",
   "description": "Magazin cu articole de damă",
-  "url": "https://www.chic-magazin.ro",
+  "url": "https://www.magazinchic.store",
   "telephone": "0712345678",
   "address": {
-    "@type": "PostalAddress",
+    "@type": "435500",
     "streetAddress": "Strada",
-    "addressLocality": "Oras",
-    "addressRegion": "Judet",
-    "postalCode": "000000",
+    "addressLocality": "Sighetu Marmatiei",
+    "addressRegion": "Maramures",
+    "postalCode": "435500",
     "addressCountry": "RO"
   },
   "openingHours": "Mo-Sa 10:00-20:00"
@@ -97,7 +84,7 @@ const Home = () => {
         </div>
 
         <div className="flex flex-col items-center w-full max-w-6xl px-4 mt-8 mb-12 mx-auto">
-          <p className="flex justify-start text-2xl font-semibold mb-4">Discount-urile momentului</p>
+          <p className="flex justify-start text-2xl font-semibold mb-4">Reducerile momentului</p>
           <div className="flex flex-row flex-wrap gap-6 justify-center">
             {discountedItems.map((item) => (
               <Link href={`products/${item.id}`} key={item.id}>

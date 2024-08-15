@@ -47,6 +47,10 @@ const Cart = () => {
   const [totalPrice, setTotalPrice] = useState(0);
 
 
+  // useEffect(() => {
+  //   dispatch({ type: 'SET_CART_COUNT', payload: cartItems.length });
+  // }, [cartItems, dispatch]);
+
   useEffect(() => {
     async function getCartItems() {
       if (userId) {
@@ -197,9 +201,7 @@ const Cart = () => {
 
       if (response.status === 200) {
         dispatch({ type: 'DECREMENT_CART_COUNT' });
-        window.location.reload();
-        // setCartItems(prevItems => prevItems.filter(cartItem => cartItem.cart_item_id !== item.cart_item_id));
-        // setTotalPrice(prevTotal => prevTotal - item.price);
+        setCartItems(prevItems => prevItems.filter(cartItem => cartItem.cart_item_id !== item.cart_item_id));
       }
     } catch (error) {
       console.error("Error deleting cart item: ", error);
