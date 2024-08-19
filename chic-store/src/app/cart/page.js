@@ -6,6 +6,7 @@ import CartItem from '@/components/CartItem';
 import React, { useState, useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import { useCart } from '@/context/CartCountContext';
+import PersonalDataConfirmationPopup from "@/components/PersonalDataConfirmationPopup";
 
 
 
@@ -32,6 +33,10 @@ async function getUser() {
 
 
 const Cart = () => {
+  //loading
+  const [isLoading, setIsLoading] = useState(true);
+  const [initialFetchDone, setInitialFetchDone] = useState(false);
+  //loading
   const { dispatch } = useCart();
   const router = useRouter();
   const currentPath = usePathname();
@@ -47,13 +52,14 @@ const Cart = () => {
   const [totalPrice, setTotalPrice] = useState(0);
 
 
-  // useEffect(() => {
-  //   dispatch({ type: 'SET_CART_COUNT', payload: cartItems.length });
-  // }, [cartItems, dispatch]);
+  useEffect(() => {
+    dispatch({ type: 'SET_CART_COUNT', payload: cartItems.length });
+  }, [cartItems, dispatch]);
 
   useEffect(() => {
     async function getCartItems() {
       if (userId) {
+        setIsLoading(true);
         try {
           const response = await axios.get(`../../api/shopping_cart?userId=${userId}`);
           console.log("items: ", response.data);
@@ -61,11 +67,20 @@ const Cart = () => {
           // Check availability for each item
           const { cartItems, unavailable } = await checkItemsAvailability(response.data.cartItems);
 
+          // Remove unavailable items from the database
+          if (unavailable.length > 0) {
+            await removeUnavailableItems(unavailable);
+            dispatch({ type: 'SET_CART_COUNT', payload: cartItems.length });
+          }
+
           setCartItems(cartItems);
           setUnavailableItems(unavailable);
           setDeliveryDetails(response.data.userDetails);
         } catch (error) {
           console.error("Error retrieving cart items:", error);
+        } finally {
+          setIsLoading(false);
+          setInitialFetchDone(true);
         }
       }
     }
@@ -128,31 +143,36 @@ const Cart = () => {
 
 
 
-  useEffect(() => {
-    async function getCartItems() {
-      if (userId) {
-        try {
-          const response = await axios.get(`../../api/shopping_cart?userId=${userId}`);
-          console.log("items: ", response.data);
+  //DUPLICATED
+  // useEffect(() => {
+  //   async function getCartItems() {
+  //     if (userId) {
+  //       setIsLoading(true);
+  //       try {
+  //         const response = await axios.get(`../../api/shopping_cart?userId=${userId}`);
+  //         console.log("items: ", response.data);
 
-          // Check availability for each item
-          const { cartItems, unavailable } = await checkItemsAvailability(response.data.cartItems);
+  //         // Check availability for each item
+  //         const { cartItems, unavailable } = await checkItemsAvailability(response.data.cartItems);
 
-          // Remove unavailable items from the database
-          if (unavailable.length > 0) {
-            await removeUnavailableItems(unavailable);
-          }
+  //         // Remove unavailable items from the database
+  //         if (unavailable.length > 0) {
+  //           await removeUnavailableItems(unavailable);
 
-          setCartItems(cartItems);
-          setUnavailableItems(unavailable);
-          setDeliveryDetails(response.data.userDetails);
-        } catch (error) {
-          console.error("Error retrieving cart items:", error);
-        }
-      }
-    }
-    getCartItems();
-  }, [userId]);
+  //           // Update cart count after removing unavailable items
+  //           dispatch({ type: 'SET_CART_COUNT', payload: cartItems.length });
+  //         }
+
+  //         setCartItems(cartItems);
+  //         setUnavailableItems(unavailable);
+  //         setDeliveryDetails(response.data.userDetails);
+  //       } catch (error) {
+  //         console.error("Error retrieving cart items:", error);
+  //       }
+  //     }
+  //   }
+  //   getCartItems();
+  // }, [userId]);
 
 
   // function to remove unavailable items
@@ -223,6 +243,10 @@ const Cart = () => {
           return acc + itemPrice;
         }, 0) + 15;
         setTotalPrice(newTotal);
+
+        // Update cart count after removing unavailable items
+        dispatch({ type: 'SET_CART_COUNT', payload: availableItems.length });
+
         return;
       }
 
@@ -243,6 +267,10 @@ const Cart = () => {
           alert("Comandă plasată cu succes! ID comandă: " + response.data.orderId);
           router.push('/order-confirmation');
         }
+
+        // Reset cart count to 0 after successful order
+        setCartItems([]);
+        dispatch({ type: 'SET_CART_COUNT', payload: 0 });
       }
     } catch (error) {
       console.error("Error during checkout:", error);
@@ -253,7 +281,7 @@ const Cart = () => {
   if (!isSuccess) {
     return (
       <div className='flex justify-center items-center h-screen'>
-        <h1 className="text-3xl font-bold">Loading...</h1>
+        <h1 className="text-3xl font-bold">Se încarcă...</h1>
       </div>
     )
   }
@@ -275,9 +303,15 @@ const Cart = () => {
               </ul>
             </div>
           )}
-          {cartItems.length > 0 ? (cartItems.map(item => (
-            <CartItem key={item.cart_item_id} item={item} onDelete={deleteCartItem} />
-          ))) : (<p className="flex justify-center">Cosul este gol</p>)}
+          {isLoading && !initialFetchDone ? (
+            <p className="flex justify-center">Se încarcă...</p>
+          ) : cartItems.length > 0 ? (
+            cartItems.map(item => (
+              <CartItem key={item.cart_item_id} item={item} onDelete={deleteCartItem} />
+            ))
+          ) : (
+            <p className="flex justify-center">Coșul este gol</p>
+          )}
         </div>
 
         {cartItems.length > 0 && (

@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import OrderCard from "@/components/OrderCard";
+import PersonalDataConfirmationPopup from '@/components/PersonalDataConfirmationPopup';
 
 
 async function getUser() {
@@ -36,10 +37,12 @@ const OrdersPage = () => {
           order.id === orderId ? { ...order, status: 'returnat' } : order
         )
       );
-      alert('Comanda a fost returnată cu succes.');
+      <PersonalDataConfirmationPopup text={"Comanda a fost returnată cu succes."} />
+      //alert('Comanda a fost returnată cu succes.');
     } catch (error) {
       console.error('Error returning order:', error);
-      alert('A apărut o eroare la returnarea comenzii. Vă rugăm să încercați din nou.');
+      <PersonalDataConfirmationPopup text={"A apărut o eroare la returnarea comenzii. Vă rugăm să încercați din nou."} />
+      //alert('A apărut o eroare la returnarea comenzii. Vă rugăm să încercați din nou.');
     }
   };
 
@@ -83,13 +86,13 @@ const OrdersPage = () => {
   console.log('Current orders:', orders);
 
   if (loading) {
-    return <div>Loading orders...</div>;
+    return <div>Încărcare comenzi...</div>;
   }
 
 
   return (
     <div className="flex flex-col items-start mt-8 mx-8 overflow-x-auto">
-      <h2 className="text-2xl font-sb mt-8 mb-4">Comenzi</h2>
+      <h2 className="text-2xl font-semibold mt-8 mb-4">Comenzi</h2>
       <div>
         {orders.length > 0 ?
           (

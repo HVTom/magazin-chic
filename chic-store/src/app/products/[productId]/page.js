@@ -216,7 +216,7 @@ const ProductDetails = ({ params }) => {
   if (!itemData) {
     return (
       <div className='flex justify-center items-center h-screen'>
-        <h1 className="text-3xl font-bold">Loading...</h1>
+        <h1 className="text-3xl font-bold">Se încarcă...</h1>
       </div>
     )  // Render a loading state while itemData is being fetched
   }

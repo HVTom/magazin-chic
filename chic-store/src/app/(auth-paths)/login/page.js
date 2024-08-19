@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from 'next/navigation';
 import { decode } from 'jsonwebtoken';
-
+import PersonalDataConfirmationPopup from "@/components/PersonalDataConfirmationPopup";
 
 export default function Login() {
   const router = useRouter()
@@ -12,7 +12,8 @@ export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [credentialsError, setCredentialsError] = useState('');
-
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupText, setPopupText] = useState('');
 
 
   const handleLogin = async (event) => {
@@ -35,14 +36,17 @@ export default function Login() {
       if (role === "admin") {
         router.push('/dashboard')
       } else if (role === "customer") {
-        router.push('/account')
+        //router.push('/account');
+        window.location.href = '/account';
       }
     } catch (error) {
       console.log(error.message);
       if (error.response.status == 401) {
-        setCredentialsError("Incorrect email or password. Please try again.");
+        setCredentialsError("Adresă sau parolă incorectă. Încercați din nou.");
       } else {
-        alert("An error occurred. Please try again later.");
+        setPopupText("A apărut o eroare. Vă rugăm încercați mai târziu.");
+        setShowPopup(true);
+        //alert("A apărut o eroare. Vă rugam încercați mai târziu.");
       }
       setEmail('');
       setPassword('');
@@ -56,6 +60,12 @@ export default function Login() {
 
   return (
     <div className="min-h-screen w-full flex flex-col justify-center items-center">
+      {showPopup && (
+        <PersonalDataConfirmationPopup
+          text={popupText}
+          onClose={() => setShowPopup(false)}
+        />
+      )}
       <h1 className="text-5xl font-bold mb-8">Login</h1>
       <form onSubmit={handleLogin}>
         <div className="mb-4 mt-8">
@@ -121,11 +131,11 @@ export default function Login() {
         <div className="mt-8 flex flex-col items-center justify-center">
           <div className="mt-2 flex">
             <p className="mr-2">Nu ai cont?</p>
-            <Link href="/register"><p className="text-blue-500">Înregistreză-te</p></Link>
+            <Link href="/register"><p className="text-indigo-500 hover:text-indigo-700">Înregistreză-te</p></Link>
           </div>
           <div className="mt-2 flex">
             <p className="mr-2">Ți-ai uitat parola?</p>
-            <Link href="/forgot-password"><p className="text-blue-500">Resetează</p></Link>
+            <Link href="/forgot-password"><p className="text-indigo-500 hover:text-indigo-700">Resetează</p></Link>
           </div>
         </div>
       </form>

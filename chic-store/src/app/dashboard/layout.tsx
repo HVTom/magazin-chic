@@ -73,7 +73,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   if (!isSuccess) {
     return (
       <div className='flex justify-center items-center h-screen'>
-        <h1 className="text-3xl font-bold">Loading...</h1>
+        <h1 className="text-3xl font-bold">Se încarcă...</h1>
       </div>
     )
   }

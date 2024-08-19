@@ -40,11 +40,11 @@ export const POST = async (req, res) => {
     });
 
     if (userExists) {
-      return NextResponse.json({ message: 'Email already exists' }, { status: 409 });
+      return NextResponse.json({ message: 'Acest email este deja folosit. Te rugăm să folosești un alt email.' }, { status: 409 });
     }
 
     if (!email || !password) {
-      throw new Error('Email and password are required');
+      throw new Error('Email-ul si parola sunt obligatorii');
     }
 
     const hashedPassword = await hashPassword(password);

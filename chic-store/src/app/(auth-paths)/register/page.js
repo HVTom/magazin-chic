@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { decode } from 'jsonwebtoken';
 import { useRouter } from "next/navigation";
-
+import PersonalDataConfirmationPopup from "@/components/PersonalDataConfirmationPopup";
 
 const Register = () => {
   const router = useRouter();
@@ -14,6 +14,9 @@ const Register = () => {
   // supress errors if inputs haven't been touchd yet
   const [emailTouched, setEmailTouched] = useState(false);
   const [passwordTouched, setPasswordTouched] = useState(false);
+  // 
+  const [errorMessage, setErrorMessage] = useState('');
+  const [showPopup, setShowPopup] = useState(false);
 
 
   // Client-Side Code (Register Component)
@@ -43,10 +46,11 @@ const Register = () => {
     } catch (error) {
       console.log(error);
       if (error.response && error.response.status === 409) {
-        alert("This email is already in use. Please use a different email.");
+        setErrorMessage(error.response.data.message);
       } else {
-        alert("An error occurred while registering. Please try again later.");
+        setErrorMessage("A apărut o eroare în timpul înregistrării. Te rugăm să încerci din nou mai târziu.");
       }
+      setShowPopup(true);
     }
   }
 
@@ -101,7 +105,14 @@ const Register = () => {
 
 
   return (
+
     <div className="min-h-screen w-full flex flex-col justify-center items-center">
+      {showPopup && (
+        <PersonalDataConfirmationPopup
+          text={errorMessage}
+          onClose={() => setShowPopup(false)}
+        />
+      )}
       <h1 className="text-5xl font-bold mb-8">Creează Cont</h1>
       <form onSubmit={handleRegister}>
         <div className="mb-4 mt-8">
@@ -180,7 +191,7 @@ const Register = () => {
         <div className="mt-8 flex flex-col items-center justify-center">
           <div className="mt-2 flex">
             <p className="mr-2">Ai deja cont?</p>
-            <Link href="/login"><p className="text-blue-500">Login</p></Link>
+            <Link href="/login"><p className="text-indigo-500 hover:text-indigo-700">Login</p></Link>
           </div>
         </div>
       </form>

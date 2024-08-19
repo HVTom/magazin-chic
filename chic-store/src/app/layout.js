@@ -49,7 +49,7 @@ export const metadata = {
 
 const RootLayout = ({ children }) => {
   const currentYear = new Date().getFullYear();
-
+  
   return (
     <ClientLayout>
       <html lang="ro" className={poppins.className}>

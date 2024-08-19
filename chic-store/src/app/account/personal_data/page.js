@@ -229,28 +229,28 @@ const PersonalData = () => {
 
 
 
-  const handleChangeEmail = async () => {
-    const userEmailChange = {
-      id: userID,
-      email: email
-    }
+  // const handleChangeEmail = async () => {
+  //   const userEmailChange = {
+  //     id: userID,
+  //     email: email
+  //   }
 
-    try {
-      const response = await axios.post("../../api/account/update_email", userEmailChange);
-      if (response.status === 200) {
-        setPopupText("Adresa de email a fost actualizată cu succes!");
-        setShowPopup(true);
-      }
-    } catch (error) {
-      if (error.response && error.response.status === 400) {
-        setPopupText("Această adresă de email este deja în uz. Te rugăm să alegi alta.");
-      } else {
-        setPopupText("A apărut o eroare la actualizarea adresei de email.");
-      }
-      setShowPopup(true);
-      console.error("Error updating email address:", error);
-    }
-  }
+  //   try {
+  //     const response = await axios.post("../../api/account/update_email", userEmailChange);
+  //     if (response.status === 200) {
+  //       setPopupText("Adresa de email a fost actualizată cu succes!");
+  //       setShowPopup(true);
+  //     }
+  //   } catch (error) {
+  //     if (error.response && error.response.status === 400) {
+  //       setPopupText("Această adresă de email este deja în uz. Te rugăm să alegi alta.");
+  //     } else {
+  //       setPopupText("A apărut o eroare la actualizarea adresei de email.");
+  //     }
+  //     setShowPopup(true);
+  //     console.error("Error updating email address:", error);
+  //   }
+  // }
 
   const handlePhoneChange = (event) => {
     const value = event.target.value.trim();
@@ -295,15 +295,15 @@ const PersonalData = () => {
     }
   };
 
-  const logout = async () => {
-    try {
-      await axios.get('../../api/auth/logout');
-      window.location.reload();
-      console.log("Logout successful");
-    } catch (error) {
-      console.error("Logout failed", error);
-    }
-  }
+  // const logout = async () => {
+  //   try {
+  //     await axios.get('../../api/auth/logout');
+  //     window.location.reload();
+  //     console.log("Logout successful");
+  //   } catch (error) {
+  //     console.error("Logout failed", error);
+  //   }
+  // }
 
   const handleBillingEmailChange = (event) => {
     const value = event.target.value.trim();
@@ -322,30 +322,30 @@ const PersonalData = () => {
   };
 
   // acc deletion + popup
-  const handleAccountDeletion = async () => {
-    setShowDeleteConfirmation(true);
-  }
+  // const handleAccountDeletion = async () => {
+  //   setShowDeleteConfirmation(true);
+  // }
 
-  const confirmAccountDeletion = async () => {
-    const userToBeDeleted = {
-      id: userID,
-      email: fullUserDetails.email,
-    }
+  // const confirmAccountDeletion = async () => {
+  //   const userToBeDeleted = {
+  //     id: userID,
+  //     email: fullUserDetails.email,
+  //   }
 
-    console.log(`userToBeDeleted: ${userToBeDeleted}`);
+  //   console.log(`userToBeDeleted: ${userToBeDeleted}`);
 
-    try {
-      const response = await axios.delete('../../api/account/delete_account', { data: userToBeDeleted });
-      console.log("User deleted successfully", response.data);
-      // Handle successful deletion (e.g., redirect to home page)
-    } catch (error) {
-      console.error("Error deleting user:", error.response?.data || error.message);
-      // Handle error (e.g., show error message to user)
-    } finally {
-      setShowDeleteConfirmation(false);
-      window.location.reload();
-    }
-  }
+  //   try {
+  //     const response = await axios.delete('../../api/account/delete_account', { data: userToBeDeleted });
+  //     console.log("User deleted successfully", response.data);
+  //     // Handle successful deletion (e.g., redirect to home page)
+  //   } catch (error) {
+  //     console.error("Error deleting user:", error.response?.data || error.message);
+  //     // Handle error (e.g., show error message to user)
+  //   } finally {
+  //     setShowDeleteConfirmation(false);
+  //     window.location.reload();
+  //   }
+  // }
 
 
 
@@ -375,7 +375,7 @@ const PersonalData = () => {
       {/*ADRESA LIVRARE*/}
       <div className="mt-8 mb-4 w-full max-w-2xl">
         <div className="flex justify-between items-center mb-4">
-          <p className="text-2xl font-bold">Adresă livrare</p>
+          <p className="text-2xl font-semibold">Adresă livrare</p>
           <button
             type="button"
             onClick={() => setShowDeliveryAddress(!showDeliveryAddress)}
@@ -415,7 +415,7 @@ const PersonalData = () => {
       {/* ADRESA DE FACTURARE */}
       <div className="mt-8 mb-4 w-full max-w-2xl">
         <div className="flex justify-between items-center mb-4">
-          <p className="text-2xl font-bold">Adresă facturare</p>
+          <p className="text-2xl font-semibold">Adresă facturare</p>
           <div className="flex items-center">
             <div className="relative mr-4">
               <svg
@@ -524,7 +524,7 @@ const PersonalData = () => {
         )}
       </div>
 
-      <div className="my-8">
+      {/* <div className="my-8">
         <p className="text-2xl font-bold mb-2">Schimbă email</p>
         <div className="flex flex-row border rounded-md px-4 py-2 w-full hover:border-black transition duration-300 ease-in-out">
           <input
@@ -543,7 +543,7 @@ const PersonalData = () => {
           <button onClick={logout} type="button" className="bg-black text-white px-4 py-2 rounded-md hover:bg-[#FFD700] hover:text-black">Logout</button>
           <button onClick={handleAccountDeletion} className="bg-red-500 text-white px-4 py-2 rounded-md hover:text-black hover:cursor-pointer">Șterge Contul</button>
         </div>
-      </div>
+      </div> */}
     </div >
   );
 }
