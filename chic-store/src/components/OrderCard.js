@@ -4,7 +4,7 @@ const OrderCard = ({ order, onReturnOrder }) => {
   const orderDate = new Date(order.date);
   const currentDate = new Date();
   const daysPassed = Math.floor((currentDate - orderDate) / (1000 * 60 * 60 * 24));
-  const canReturn = daysPassed <= 14 && order.status !== 'returnat';
+  const canReturn = daysPassed <= 14 && order.status === 'expediat';
 
   const getBackgroundColor = () => {
     switch (order.status) {
