@@ -32,10 +32,7 @@ export default function Products() {
 
 
 
-  // Use the useEffect hook to fetch data from the API endpoint when the component mounts
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
+
 
   const fetchData = useCallback(async () => {
     try {
@@ -70,6 +67,11 @@ export default function Products() {
       console.error("Error fetching data:", error);
     }
   }, [limit]);
+
+  // Use the useEffect hook to fetch data from the API endpoint when the component mounts
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
   const loadMore = () => {
     setLimit(prevLimit => prevLimit + 10);

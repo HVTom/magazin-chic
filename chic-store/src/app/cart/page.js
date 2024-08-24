@@ -56,6 +56,18 @@ const Cart = () => {
     dispatch({ type: 'SET_CART_COUNT', payload: cartItems.length });
   }, [cartItems, dispatch]);
 
+  // function to remove unavailable items
+  const removeUnavailableItems = useCallback(async (unavailableItems) => {
+    try {
+      await axios.post('../../api/remove-unavailable-cart-items', {
+        userId,
+        items: unavailableItems
+      });
+    } catch (error) {
+      console.error("Error removing unavailable items:", error);
+    }
+  }, [userId]);
+
   useEffect(() => {
     async function getCartItems() {
       if (userId) {
@@ -140,52 +152,6 @@ const Cart = () => {
     }
     fetchData();
   }, [router]);
-
-
-
-  //DUPLICATED
-  // useEffect(() => {
-  //   async function getCartItems() {
-  //     if (userId) {
-  //       setIsLoading(true);
-  //       try {
-  //         const response = await axios.get(`../../api/shopping_cart?userId=${userId}`);
-  //         console.log("items: ", response.data);
-
-  //         // Check availability for each item
-  //         const { cartItems, unavailable } = await checkItemsAvailability(response.data.cartItems);
-
-  //         // Remove unavailable items from the database
-  //         if (unavailable.length > 0) {
-  //           await removeUnavailableItems(unavailable);
-
-  //           // Update cart count after removing unavailable items
-  //           dispatch({ type: 'SET_CART_COUNT', payload: cartItems.length });
-  //         }
-
-  //         setCartItems(cartItems);
-  //         setUnavailableItems(unavailable);
-  //         setDeliveryDetails(response.data.userDetails);
-  //       } catch (error) {
-  //         console.error("Error retrieving cart items:", error);
-  //       }
-  //     }
-  //   }
-  //   getCartItems();
-  // }, [userId]);
-
-
-  // function to remove unavailable items
-  const removeUnavailableItems = useCallback(async (unavailableItems) => {
-    try {
-      await axios.post('../../api/remove-unavailable-cart-items', {
-        userId,
-        items: unavailableItems
-      });
-    } catch (error) {
-      console.error("Error removing unavailable items:", error);
-    }
-  }, [userId]);
 
 
 
