@@ -369,7 +369,12 @@ const DataManagement = () => {
                 <div className="flex flex-wrap mt-4">
                   {selectedImages.map((image, index) => (
                     <div key={index} className="relative">
-                      <img src={URL.createObjectURL(image)} alt={`selected-${index}`} className="w-32 h-32 object-cover mr-2 mb-2" />
+                      <Image
+                        src={URL.createObjectURL(image)}
+                        width={32}
+                        height={32}
+                        alt={`selected-${index}`}
+                        className="w-32 h-32 object-cover mr-2 mb-2" />
                       <button
                         className="absolute top-0 right-0 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center"
                         onClick={() => handleDeleteBulkImage(index)}

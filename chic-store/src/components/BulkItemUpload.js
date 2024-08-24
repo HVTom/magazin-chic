@@ -18,7 +18,7 @@ const BulkItemUpload = ({ photos, name, price, material, type, sizes, descriptio
       selectedColor,
       description,
     });
-  }, [photos, name, price, material, type, selectedSize, selectedColor, description]);
+  }, [photos, name, price, material, type, selectedSize, selectedColor, description, onDataChange]);
 
 
 

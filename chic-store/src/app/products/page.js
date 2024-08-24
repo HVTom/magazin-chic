@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import '../global.css';
 import axios from "axios";
@@ -35,9 +35,9 @@ export default function Products() {
   // Use the useEffect hook to fetch data from the API endpoint when the component mounts
   useEffect(() => {
     fetchData();
-  }, [limit]);
+  }, [fetchData]);
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
       const response = await axios.get(`/api/products?limit=${limit}`);
       const newItems = response.data.items;
@@ -69,7 +69,7 @@ export default function Products() {
     } catch (error) {
       console.error("Error fetching data:", error);
     }
-  };
+  }, [limit]);
 
   const loadMore = () => {
     setLimit(prevLimit => prevLimit + 10);

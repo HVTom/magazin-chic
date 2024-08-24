@@ -69,7 +69,7 @@ const AccountLayout = ({ children }: { children: React.ReactNode }) => {
       router.push("/account");
 
     })();
-  }, [router.push]);
+  }, [router]);
 
 
   if (!isSuccess) {

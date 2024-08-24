@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Image from 'next/image';
+
 
 const BulkItemUpload = ({ photos, name, price, material, description, sizes, types, prefilledType }) => {
   const [selectedSize, setSelectedSize] = useState(null);
@@ -23,7 +25,7 @@ const BulkItemUpload = ({ photos, name, price, material, description, sizes, typ
         <input type="file" multiple onChange={handleImageChange} />
         <div className="flex flex-wrap mt-4">
           {selectedImages.map((image, index) => (
-            <img key={index} src={image} alt={`selected-${index}`} className="w-32 h-32 object-cover mr-2 mb-2" />
+            <Image width={123} height={123} key={index} src={image} alt={`selected-${index}`} className="w-32 h-32 object-cover mr-2 mb-2" />
           ))}
         </div>
       </div>

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import axios, { AxiosError } from "axios";
 import CartItem from '@/components/CartItem';
 //import { ClothingItem } from '@/lib/types/types'; // Import the ClothingItem type
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import { useCart } from '@/context/CartCountContext';
 import PersonalDataConfirmationPopup from "@/components/PersonalDataConfirmationPopup";
@@ -85,7 +85,7 @@ const Cart = () => {
       }
     }
     getCartItems();
-  }, [userId]);
+  }, [userId, dispatch, removeUnavailableItems]);
 
 
 
@@ -176,7 +176,7 @@ const Cart = () => {
 
 
   // function to remove unavailable items
-  async function removeUnavailableItems(unavailableItems) {
+  const removeUnavailableItems = useCallback(async (unavailableItems) => {
     try {
       await axios.post('../../api/remove-unavailable-cart-items', {
         userId,
@@ -185,7 +185,8 @@ const Cart = () => {
     } catch (error) {
       console.error("Error removing unavailable items:", error);
     }
-  }
+  }, [userId]);
+
 
 
 
