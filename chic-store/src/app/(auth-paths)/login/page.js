@@ -6,6 +6,9 @@ import { useRouter } from 'next/navigation';
 import { decode } from 'jsonwebtoken';
 import PersonalDataConfirmationPopup from "@/components/PersonalDataConfirmationPopup";
 
+axios.defaults.withCredentials = true;
+
+
 export default function Login() {
   const router = useRouter()
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -35,9 +38,10 @@ export default function Login() {
 
       if (role === "admin") {
         router.push('/dashboard')
-      } else if (role === "customer") {
-        //router.push('/account');
-        window.location.href = '/account';
+      }
+      if (role === "customer") {
+        router.push('/account');
+        //window.location.href = '/account';
       }
     } catch (error) {
       console.log(error.message);

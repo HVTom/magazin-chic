@@ -5,7 +5,8 @@ import { NextResponse } from "next/server";
 export async function GET() {
   const serialized = serialize(COOKIE_NAME, "", {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
+    //secure: process.env.NODE_ENV === "production",
+    secure: false,
     sameSite: "strict",
     maxAge: -1, // Set max age to -1 to expire the cookie
     path: "/",

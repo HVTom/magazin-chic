@@ -48,10 +48,10 @@ async function getUser() {
   }
 }
 
-const AccountLayout = ({ children }: { children: React.ReactNode }) => {
+const AccountLayout = ({ children }) => {
   const router = useRouter();
   const currentPath = usePathname();
-  const [isSuccess, setIsSuccess] = useState<boolean>(false);
+  const [isSuccess, setIsSuccess] = useState(false);
 
 
   useEffect(() => {
@@ -69,7 +69,7 @@ const AccountLayout = ({ children }: { children: React.ReactNode }) => {
 
       if (isSuccess && user.role === "customer") {
         router.push("/account");
-      } else {
+      } else if (isSuccess && user.role === "admin") {
         router.push("/dashboard");
       }
 

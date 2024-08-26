@@ -47,10 +47,10 @@ async function getUser() {
   }
 }
 
-const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
+const DashboardLayout = ({ children }) => {
   const router = useRouter();
   const currentPath = usePathname();
-  const [isSuccess, setIsSuccess] = useState<boolean>(false);
+  const [isSuccess, setIsSuccess] = useState(false);
 
 
   useEffect(() => {

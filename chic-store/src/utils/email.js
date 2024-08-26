@@ -7,7 +7,8 @@ export async function sendPasswordResetEmail(email, resetToken) {
     // Your email service configuration
     host: process.env.EMAIL_HOST,
     port: process.env.EMAIL_PORT,
-    secure: process.env.EMAIL_SECURE === 'true',
+    //secure: process.env.EMAIL_SECURE === 'true',
+    secure: false,
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS,
