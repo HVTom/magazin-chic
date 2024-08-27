@@ -64,9 +64,7 @@ const DashboardLayout = ({ children }) => {
         router.push("/login");
         return;
       }
-      if (user.role === "admin") {
-        setIsSuccess(true);
-      }
+      setIsSuccess(true);
     }
     checkUser();
   }, [router]);
