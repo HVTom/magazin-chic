@@ -9,7 +9,7 @@ export async function GET() {
   const token = cookieStore.get(COOKIE_NAME);
 
   if (!token) {
-    return NextResponse.json({ message: "Unauthorized", }, { status: 401, });
+    return NextResponse.json({ message: "QWERTY", }, { status: 401, });
   }
 
   const { value } = token;
