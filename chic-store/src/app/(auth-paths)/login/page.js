@@ -6,8 +6,6 @@ import { useRouter } from 'next/navigation';
 import { decode } from 'jsonwebtoken';
 import PersonalDataConfirmationPopup from "@/components/PersonalDataConfirmationPopup";
 
-axios.defaults.withCredentials = true;
-
 
 export default function Login() {
   const router = useRouter()
@@ -28,7 +26,7 @@ export default function Login() {
     }
 
     try {
-      const { data } = await axios.post('../../api/auth/login', formCredentials);
+      const { data } = await axios.post('/api/auth/login', formCredentials, { withCredentials: true });
       console.log("Data from API:", data); // Log the data received from the API
 
       const decodedToken = decode(data.token); // Decode the JWT token

@@ -29,7 +29,7 @@ const Register = () => {
     }
 
     try {
-      const { data } = await axios.post('../../api/auth/register', formCredentials);
+      const { data } = await axios.post('/api/auth/register', formCredentials, { withCredentials: true });
       console.log("Data from API:", data); // Log the data received from the API
 
       const decodedToken = decode(data.token); // Decode the JWT token
