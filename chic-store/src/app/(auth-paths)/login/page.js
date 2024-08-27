@@ -38,10 +38,8 @@ export default function Login() {
         router.push('/dashboard')
       }
       if (role === "customer") {
-        router.push('/account').then(() => {
-          // This will force a refresh of the page data
-          router.reload();
-        });
+        router.push('/account');
+        window.location.href = '/account';
       }
     } catch (error) {
       console.log(error.message);
