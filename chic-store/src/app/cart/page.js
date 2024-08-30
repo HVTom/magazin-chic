@@ -258,7 +258,7 @@ const Cart = () => {
       <h1 className="flex justify-center text-3xl font-semibold mb-12">Coșul meu</h1>
 
       <div className="flex flex-col md:flex-row md:justify-center mx-2">
-        <div className="w-full md:w-2/3 p-3 bg-white h-full mx-2">
+        <div className="w-full md:w-2/3 p-3 bg-white h-full mx-2 rounded-md">
           {unavailableItems.length > 0 && (
             <div className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-4" role="alert">
               <p className="font-bold">Atenție!</p>
@@ -282,7 +282,7 @@ const Cart = () => {
         </div>
 
         {cartItems.length > 0 && (
-          <div className="w-full md:w-1/3 p-3 bg-white mt-8 md:mt-0 mx-2 h-full">
+          <div className="w-full md:w-1/3 p-3 bg-white mt-8 md:mt-0 mx-2 h-full rounded-md">
             <div className="mb-8 rounded-md">
               <h2 className="text-2xl font-semibold mb-4">Detalii livrare și facturare</h2>
               {deliveryDetails.first_name && deliveryDetails.last_name && deliveryDetails.phone &&

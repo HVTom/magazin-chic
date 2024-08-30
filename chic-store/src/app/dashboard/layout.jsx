@@ -81,12 +81,12 @@ const DashboardLayout = ({ children }) => {
 
   return (
     <div className="my-12">
-      <h1 className="flex justify-center text-3xl font-semibold mb-12">Dashboard</h1>
+      <h1 className="flex justify-center text-3xl font-semibold mb-12">Dashboard ADM</h1>
 
       <div className="flex flex-col md:flex-row md:justify-center md:mx-20">
         {/* Left sidebar */}
-        <div className="w-full md:w-1/4 px-3 bg-white h-full mx-2"> {/* Adjusted width */}
-          <h3 className="text-2xl p-2">Salut, Admin!</h3>
+        <div className="w-full md:w-1/4 px-3 bg-white h-full mx-2 rounded-md"> {/* Adjusted width */}
+          {/* <h3 className="text-2xl p-2">Salut, Admin!</h3> */}
 
           {links.map((link) => (
             <Link key={link.name} href={link.href}>
@@ -105,7 +105,7 @@ const DashboardLayout = ({ children }) => {
         </div>
 
         {/* Right section with details */}
-        <div className="w-full md:w-3/4 px-3 bg-white mt-8 md:mt-0 mx-2">{children}</div> {/* Adjusted width */}
+        <div className="w-full md:w-3/4 px-3 bg-white mt-8 md:mt-0 mx-2 rounded-md">{children}</div> {/* Adjusted width */}
       </div>
     </div>
   );

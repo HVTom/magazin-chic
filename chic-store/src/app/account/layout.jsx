@@ -94,7 +94,7 @@ const AccountLayout = ({ children }) => {
 
       <div className="flex flex-col md:flex-row md:justify-center md:mx-20">
         {/* Left sidebar */}
-        <div className="w-full md:w-2/6 px-3 bg-white h-full mx-2">
+        <div className="w-full md:w-2/6 px-3 bg-white h-full mx-2 rounded-md">
           {/* <h3 className="text-2xl p-2">Salut, user!</h3> */}
 
           {links.map((link) => (
@@ -114,7 +114,7 @@ const AccountLayout = ({ children }) => {
         </div>
 
         {/* Right section with details */}
-        <div className="w-full md:w-4/6 px-3 bg-white mt-8 md:mt-0 mx-2">{children}</div>
+        <div className="w-full md:w-4/6 px-3 bg-white mt-8 md:mt-0 mx-2 rounded-md">{children}</div>
       </div>
     </div>
   );

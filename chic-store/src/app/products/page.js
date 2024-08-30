@@ -189,7 +189,7 @@ export default function Products() {
 
       <div className="flex flex-col md:flex-row md:justify-center">
         {/* Sorting and filtering bar */}
-        <div className="px-12 lg:mt-3 md:mt-3 bg-white w-1/3 h-full shadow-lg">
+        <div className="px-12 lg:mt-3 md:mt-3 bg-white w-1/3 h-full shadow-lg rounded-md">
           <div className="my-24">
             {/* Marime (size) selector */}
             <div className="mb-4">

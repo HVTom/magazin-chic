@@ -2,6 +2,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import InvoiceDetailsCard from "@/components/InvoiceDetailsCard";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import InvoicePDF from "@/components/InvoicePDF";
+
+
+const companyDetails = {
+  name: "Magazin Chic",
+  address: "Strada Bogdan Vodă",
+  phone: "07XX XXX XXX",
+  email: "imbracaminte.chic@gmail.com"
+};
 
 
 const Invoices = () => {
@@ -125,6 +135,9 @@ const Invoices = () => {
                 Detalii
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Factură
+              </th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Acțiuni
               </th>
             </tr>
@@ -165,6 +178,22 @@ const Invoices = () => {
                   >
                     Vezi detalii
                   </button>
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <PDFDownloadLink
+                    document={<InvoicePDF invoice={invoice} companyDetails={companyDetails} />}
+                    fileName={`invoice-${invoice.order_id}.pdf`}
+                  >
+                    {({ blob, url, loading, error }) => (
+                      <button
+                        className={`text-indigo-600 hover:text-indigo-900 ${loading ? 'opacity-50 cursor-not-allowed' : ''
+                          }`}
+                        disabled={loading}
+                      >
+                        {loading ? 'Incarcare document...' : 'Descarcă PDF'}
+                      </button>
+                    )}
+                  </PDFDownloadLink>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                   {invoice.status === 'in asteptare' ?
