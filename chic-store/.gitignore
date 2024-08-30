@@ -38,3 +38,6 @@ next-env.d.ts
 
 # constants
 /constants
+
+# db
+chic_store.db
