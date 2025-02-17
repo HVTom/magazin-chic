@@ -8,7 +8,7 @@ import InvoicePDF from "@/components/InvoicePDF";
 
 const companyDetails = {
   name: "Magazin Chic",
-  address: "Strada Bogdan Vodă",
+  address: "Strada",
   phone: "07XX XXX XXX",
   email: "imbracaminte.chic@gmail.com"
 };

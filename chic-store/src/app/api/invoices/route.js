@@ -12,7 +12,7 @@ export async function GET(req) {
       db.all(`
         SELECT 
           o.id AS order_id,
-          strftime('%d/%m/%Y, %I:%M:%S %p', datetime(o.order_date, '+3 hours')) AS order_date,
+          o.order_date,
           o.total_price,
           o.status,
           o.shipping_address,

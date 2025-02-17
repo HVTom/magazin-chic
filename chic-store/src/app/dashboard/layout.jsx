@@ -81,7 +81,7 @@ const DashboardLayout = ({ children }) => {
 
   return (
     <div className="my-12">
-      <h1 className="flex justify-center text-3xl font-semibold mb-12">Dashboard ADM</h1>
+      <h1 className="flex justify-center text-3xl font-semibold mb-12">Dashboard Admin</h1>
 
       <div className="flex flex-col md:flex-row md:justify-center md:mx-20">
         {/* Left sidebar */}

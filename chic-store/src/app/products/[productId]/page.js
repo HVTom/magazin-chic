@@ -294,7 +294,7 @@ const ProductDetails = ({ params }) => {
         <div className="">
           <div className="mx-12">
             <h2 className="text-3xl font-semibold mb-4">{itemData.name}</h2>
-            <h2 className="text-3xl font-semibold mb-4 text-red-700">Item id {itemData.id}</h2>
+            {/* <h2 className="text-3xl font-semibold mb-4 text-red-700">Item id {itemData.id}</h2> */}
             {itemData.quantity > 1 && itemData.quantity <= 10 ? (<h2 className="text-3xl font-semibold mb-4 text-red-700">Mai sunt {itemData.quantity} articole</h2>) : ""}
             {itemData.quantity == 1 ? (<h2 className="text-3xl font-semibold mb-4 text-red-700">Mai este {itemData.quantity} articol</h2>) : ""}
             {newPrice ? (
