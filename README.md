@@ -12,8 +12,8 @@ Clothes e-commerce website
 + [NodeMailer](https://www.nodemailer.com)
 
 ## Used briefly
-+ Ubuntu Server - to keep the server lightweight (not used at the moment)
-+ Nginx - making website availalbe online (not used at the moment)
++ Ubuntu Server
++ Nginx
 
 
 
@@ -76,16 +76,16 @@ The cart page contains the whole order summary: products with thumbnails for eac
 
 
 # Admin Side
-Originally thought-out as a website that is used by small, local merchant, the admin page has all the managing operations a store owner would need.
+Originally thought-out as a website to be used by a small, local merchant, the admin page has all the managing operations a store owner would need. 
 
 
-The dashboard has its functionality in the first 2 sections.
+<img src="https://github.com/HVTom/magazin-chic/blob/main/UI/Admin_Dashboard_Add_Article_Main_Product_Details.png">
 The data management section has a main collapsible form at the top, where the admin inputs the repetitive data for a product and its stock. Then the generate button, when it's pressed, show the summary for the products, and lets the admin choose for each item the size-color combination. On upload, the photos are sent to Bunny Storage, and then the product data is stored sequentially in the SQLite database (the product's general details and stock in 1 table, then in separate tables each individual item and the color (item_color table), and each item with the size (item_size). A final table links the items table with the size and color db tables.
 
+<img src="https://github.com/HVTom/magazin-chic/blob/main/UI/Admin_Dashboard_Stock_Management.png">
 Under the product uploading form there's a stock table. The stock table is color coded so the owner sees easily which type of product has a healthy stock (green), less than 10 products (yellow), sold out (red). The sold out products have a button to manually clean the product entry from the DB. 
 The data management section also contains a stock management table. Above it it has a product price updater with 2 inputs that require the product id and the newly desired price.
-<img src="https://github.com/HVTom/magazin-chic/blob/main/UI/Admin_Dashboard_Add_Article_Main_Product_Details.png">
-<img src="https://github.com/HVTom/magazin-chic/blob/main/UI/Admin_Dashboard_Stock_Management.png">
+
 <img src="https://github.com/HVTom/magazin-chic/blob/main/UI/Admin_Dashboard_Order_Management_1.png">
 <img src="https://github.com/HVTom/magazin-chic/blob/main/UI/Admin_Dashboard_Orders_Full_Order_Details_Card.png">
 
