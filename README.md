@@ -91,8 +91,8 @@ The data management section has a main collapsible form at the top, where the ad
 
 Under the product uploading form there's a stock table. The stock table is color coded so the owner sees easily which type of product has a healthy stock (green), less than 10 products (yellow), sold out (red). The sold out products have a button to manually clean the product entry from the DB. 
 The data management section also contains a stock management table. Above it it has a product price updater with 2 inputs that require the product id and the newly desired price.
-<img src="https://github.com/HVTom/magazin-chic/blob/main/UI/Admin_Dashboard_Stock_Management.png">
 <img src="https://github.com/HVTom/magazin-chic/blob/main/UI/Admin_Dashboard_Add_Article_Main_Product_Details.png">
+<img src="https://github.com/HVTom/magazin-chic/blob/main/UI/Admin_Dashboard_Stock_Management.png">
 <img src="https://github.com/HVTom/magazin-chic/blob/main/UI/Admin_Dashboard_Order_Management_1.png">
 <img src="https://github.com/HVTom/magazin-chic/blob/main/UI/Admin_Dashboard_Orders_Full_Order_Details_Card.png">
 
