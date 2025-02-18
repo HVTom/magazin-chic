@@ -94,8 +94,7 @@ Clothes e-commerce website
 <img src="https://github.com/HVTom/magazin-chic/blob/main/UI/Admin_Dashboard_Size_Color_Editing.png">
 
 
-<!--<img src="https://github.com/HVTom/magazin-chic/blob/main/UI/Admin_Dashboard_Add_Article_Main_Product_Details.png">-->
-###### The data management section has a main collapsible form at the top, where the admin inputs the repetitive data for a product and its stock. Then the generate button, when it's pressed, show the summary for the products, and lets the admin choose for each item the size-color combination. On upload, the photos are sent to Bunny Storage, and then the product data is stored sequentially in the SQLite database (the product's general details and stock in 1 table, then in separate tables each individual item and the color (item_color table), and each item with the size (item_size). A final table links the items table with the size and color db tables.
+##### The data management section has a main collapsible form at the top, where the admin inputs the repetitive data for a product and its stock. Then the generate button, when it's pressed, show the summary for the products, and lets the admin choose for each item the size-color combination. On upload, the photos are sent to Bunny Storage, and then the product data is stored sequentially in the SQLite database (the product's general details and stock in 1 table, then in separate tables each individual item and the color (item_color table), and each item with the size (item_size). A final table links the items table with the size and color db tables.
 
 <img src="https://github.com/HVTom/magazin-chic/blob/main/UI/Admin_Dashboard_Stock_Management.png">
 
