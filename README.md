@@ -34,6 +34,7 @@ Clothes e-commerce website
 ### 2. Main products page:
 <img src="https://github.com/HVTom/magazin-chic/blob/main/UI/Products.png">
 
+##### Functionality:
 <ul>
   <li><h5>Search bar</h5></li>
   <li><h5>Filtering and sorting side bar - uses additional arrays so user gets to see the previous results after deleting a sort/filter criteria</h5></li>
