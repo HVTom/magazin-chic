@@ -6,9 +6,9 @@ Clothes e-commerce website
 ## Technologies
 + NextJS
 + Tailwind
-+ SQLite - clients and admins accounts, product textual data
-+ JWT - authentication authorization
-+ Bunny Storage - storage bucket for all the images
++ SQLite
++ JWT
++ Bunny Storage
 + [NodeMailer](https://www.nodemailer.com)
 
 ## Server Admin
