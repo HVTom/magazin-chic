@@ -19,7 +19,7 @@ Clothes e-commerce website
 
 # Application Flow
 
-### 1. Landing page
+### *Landing page*
 <img src="https://github.com/HVTom/magazin-chic/blob/main/UI/Landing.png" width="300" />
 
 <h5>Has 2 introductory sections to keep the user interested:</h5>
@@ -31,7 +31,7 @@ Clothes e-commerce website
 
 
 
-### 2. Main products page:
+### *Main products page*
 <img src="https://github.com/HVTom/magazin-chic/blob/main/UI/Products.png">
 
 ##### Functionality:
@@ -46,7 +46,7 @@ Clothes e-commerce website
 
 
 
-### 3. Product details page:
+### *Product details page*
 
 
 
@@ -73,7 +73,7 @@ Clothes e-commerce website
 # Customer Side
 
 
-### 4. Customer dashboard
+### *Customer dashboard*
 
 ##### Customer Dashboard has 3 menu section to manage orders (history and current, 2 colors to indicate their status, thumbnail for each product, total price, date)
 
