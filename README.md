@@ -22,18 +22,24 @@ Clothes e-commerce website
 ### 1. Landing page
 <img src="https://github.com/HVTom/magazin-chic/blob/main/UI/Landing.png" width="300" />
 
-##### + Has 2 introductory sections to keep the user interested:
-#####   + New items (posted at most 15 days old)
-#####   + Discounts
+<h5>Has 2 introductory sections to keep the user interested:</h5>
+<ul>
+    <li><h5>New items (posted at most 15 days old)</h5></li>
+    <li><h5>Discounts</h5></li>
+</ul>
+
 
 
 
 ### 2. Main products page:
 <img src="https://github.com/HVTom/magazin-chic/blob/main/UI/Products.png">
 
-##### + Search bar
-##### + Filtering and sorting side bar - uses additional arrays so user gets to see the previous results after deleting a sort/filter criteria
-##### + Show more - progressive loading (increments of 5)
+<ul>
+  <li><h5>Search bar</h5></li>
+  <li><h5>Filtering and sorting side bar - uses additional arrays so user gets to see the previous results after deleting a sort/filter criteria</h5></li>
+  <li><h5>Show more - progressive loading (increments of 5)</h5></li>
+</ul>
+
 
 
 
