@@ -11,7 +11,7 @@ Clothes e-commerce website
 + Bunny Storage - storage bucket for all the images
 + [NodeMailer](https://www.nodemailer.com)
 
-## Used briefly
+## Server Admin
 + Ubuntu Server
 + Nginx
 
