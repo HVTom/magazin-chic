@@ -14,7 +14,8 @@ Things to document:
 + NextJS
 + JWT
 + SQLite
-+ Bunny CDN
++ Bunny Storage
++ [NodeMailer](https://www.nodemailer.com)
 
 
 
