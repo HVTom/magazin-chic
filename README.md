@@ -24,7 +24,7 @@ Clothes e-commerce website
 
 <h5>Has 2 introductory sections to keep the user interested:</h5>
 <ul>
-    <li><h5>New items (posted at most 15 days old)</h5></li>
+    <li><h5>New items (posted within the last 15 days)</h5></li>
     <li><h5>Discounts</h5></li>
 </ul>
 
