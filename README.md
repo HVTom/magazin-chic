@@ -115,7 +115,7 @@ Clothes e-commerce website
 <img src="https://github.com/HVTom/magazin-chic/blob/main/UI/Admin_Dashboard_Orders_Full_Order_Details_Card.png">
 
 
-##### The orders section has a table with the order id, order timestamp, client name, total price of the order, a popop that mimics a bill layout with full order details. The table is color-coded, yellow indicates the order is pending. When the store owner finishes packing the order and is ready for shipping, he uses the blue button ("Mark as complete") to change the order status to shipped. If there was a mistake and the owner modified the wrong order status it can be reverted using the red button ("Cancel"). The table is paginated and shows the orders by their timestamp (oldest first).
+##### The orders section has a table with the order id, order timestamp, client name, total price of the order, a popup that mimics a bill layout with full order details. The table is color-coded, yellow indicates the order is pending. When the store owner finishes packing the order and is ready for shipping, he uses the blue button ("Mark as complete") to change the order status to shipped. If there was a mistake and the owner modified the wrong order status it can be reverted using the red button ("Cancel"). The table is paginated and shows the orders by their timestamp (oldest first). There is also the "Download PDF" button that generates a formatted invoice for each order. 
 
 
 
