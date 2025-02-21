@@ -65,7 +65,7 @@ Clothes e-commerce website
 <img src="https://github.com/HVTom/magazin-chic/blob/main/UI/Add_To_Cart_Popup.png">
 
 ##### User is directed to choose a size-color combination before adding a product to cart.
-##### A popup shown when a user wants to add to cart the product.
+##### A popup shown when a user wants to add the product to cart.
 ##### Adding to cart function is not triggered unless the user chooses "OK".
 
 
@@ -75,7 +75,7 @@ Clothes e-commerce website
 
 ### *Customer dashboard*
 
-##### Customer Dashboard has 3 menu section to manage orders (history and current, 2 colors to indicate their status, thumbnail for each product, total price, date)
+##### Customer Dashboard has menu with 3 sections to manage orders (history and current, 2 colors to indicate their status, thumbnail for each product, total price, date)
 
 <img src="https://github.com/HVTom/magazin-chic/blob/main/UI/Customer_Dashboard_Orders.png">
 
@@ -108,11 +108,16 @@ Clothes e-commerce website
 
 <img src="https://github.com/HVTom/magazin-chic/blob/main/UI/Admin_Dashboard_Stock_Management.png">
 
-##### Under the product uploading form there's a stock table. The stock table is color coded so the owner sees easily which type of product has a healthy stock (green), less than 10 products (yellow), sold out (red). The sold out products have a button to manually clean the product entry from the DB. 
+##### Under the product uploading form there's a stock table. The stock table is color-coded so the owner sees easily which type of product has a healthy stock (green), less than 10 products (yellow), sold out (red). The sold out products have a button to manually clean the product entry from the DB. 
 ##### The data management section also contains a stock management table. Above it it has a product price updater with 2 inputs that require the product id and the newly desired price.
 
 <img src="https://github.com/HVTom/magazin-chic/blob/main/UI/Admin_Dashboard_Order_Management_1.png">
 <img src="https://github.com/HVTom/magazin-chic/blob/main/UI/Admin_Dashboard_Orders_Full_Order_Details_Card.png">
+
+
+##### The orders section has a table with the order id, order timestamp, client name, total price of the order, a popop that mimics a bill layout with full order details. The table is color-coded, yellow indicates the order is pending. When the store owner finishes packing the order and is ready for shipping, he uses the blue button ("Mark as complete") to change the order status to shipped. If there was a mistake and the owner modified the wrong order status it can be reverted using the red button ("Cancel"). The table is paginated and shows the orders by their timestamp (oldest first).
+
+
 
 
 ##### The last menu sections is account management which looks like the customer's Actions but contains only a logout button.
