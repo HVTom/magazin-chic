@@ -3,7 +3,7 @@ Clothes e-commerce website
 
 
 
-## Technologies
+## Technologies:
 + NextJS
 + Tailwind
 + SQLite
@@ -11,7 +11,7 @@ Clothes e-commerce website
 + Bunny Storage
 + [NodeMailer](https://www.nodemailer.com)
 
-## Server Admin
+## Hosted briefly using:
 + Ubuntu Server
 + Nginx
 
